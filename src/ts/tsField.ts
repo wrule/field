@@ -34,6 +34,8 @@ export interface TsField extends Field {
    */
   Merge(tsField: TsField): TsField;
 
+  Diff(tsField: TsField): [TsField, TsField][];
+
   /**
    * 判断本ts字段的结构是否可以定义目标数据
    * @param data 目标数据

@@ -74,6 +74,13 @@ export class TsUnion extends UnionField implements TsField {
   }
   // review 2021年07月28日00:13:17
 
+  public Diff(tsField: TsField): [TsField, TsField][] {
+    if (!this.Equal(tsField)) {
+      return [[this.Clone(), tsField.Clone()]];
+    }
+    return [];
+  }
+
   @BeforeDefineJsField()
   public DefineJsField(jsField: JsField) {
     return this.Members.some((member) => member.DefineJsField(jsField));

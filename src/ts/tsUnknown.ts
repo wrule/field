@@ -33,6 +33,13 @@ export class TsUnknown extends Field implements TsField {
     return tsField.Clone(this.Name);
   }
 
+  public Diff(tsField: TsField): [TsField, TsField][] {
+    if (!this.Equal(tsField)) {
+      return [[this.Clone(), tsField.Clone()]];
+    }
+    return [];
+  }
+
   @BeforeDefineJsField()
   public DefineJsField(jsField: JsField) {
     return false;

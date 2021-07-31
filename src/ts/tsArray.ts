@@ -94,6 +94,13 @@ export class TsArray extends ArrayField implements TsField {
   }
   // review 2021年07月27日16:35:41
 
+  public Diff(tsField: TsField): [TsField, TsField][] {
+    if (!this.Equal(tsField)) {
+      return [[this.Clone(), tsField.Clone()]];
+    }
+    return [];
+  }
+
   @BeforeDefineJsField()
   public DefineJsField(jsField: JsField) {
     if (jsField.Type === EType.Array) {

@@ -91,6 +91,13 @@ export class TsObject extends ObjectField implements TsField {
     }
   }
 
+  public Diff(tsField: TsField): [TsField, TsField][] {
+    if (!this.Equal(tsField)) {
+      return [[this.Clone(), tsField.Clone()]];
+    }
+    return [];
+  }
+
   @BeforeDefineJsField()
   public DefineJsField(jsField: JsField) {
     if (jsField.Type === EType.Object) {

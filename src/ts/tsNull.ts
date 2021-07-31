@@ -34,6 +34,13 @@ export class TsNull extends Field implements TsField {
     return new TsUnion(this.Name, [this.Clone(), tsField.Clone()]);
   }
 
+  public Diff(tsField: TsField): [TsField, TsField][] {
+    if (!this.Equal(tsField)) {
+      return [[this.Clone(), tsField.Clone()]];
+    }
+    return [];
+  }
+
   @BeforeDefineJsField()
   public DefineJsField(jsField: JsField) {
     return false;
